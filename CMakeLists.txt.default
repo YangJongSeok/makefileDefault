@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 3.19)
+
+project (
+  [Project Name]
+   LANGUAGES CXX
+)
+
+SET(MAKDIR $ENV{HOME}/[cmake file path])
+INCLUDE(${MAKDIR}/[cmake file name])
+
+# Target Name
+SET(TARGET [program name])
+
+# Soruce
+SET(SOURCE [source name])
+
+# Source List...
+ADD_EXECUTABLE(${TARGET} ${SOURCE})
+
+# Link Library List...
+TARGET_LINK_LIBRARIES(${TARGET} [libname])
+
+# Install Directory
+#SET_TARGET_PROPERTIES(${TARGET} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BINDIR})
+INSTALL(CODE "EXECUTE_PROCESS(COMMAND mv ${BINDIR}/${TARGET} ${BINDIR}/${TARGET}.${timestamp}.old)")
+INSTALL(
+    TARGETS ${TARGET}
+    RUNTIME DESTINATION ${BINDIR}
+    LIBRARY DESTINATION ${LIBDIR}
+)

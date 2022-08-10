@@ -1,0 +1,31 @@
+SET(SRCDIR $ENV{HOME}/[source dir]
+SET(ADMDIR $ENV{HOME}/[install dir])
+
+# Compiler
+SET(CMAKE_C_COMPILER gcc)
+SET(CMAKE_CXX_COMPILER g++)
+
+SET(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD_REQUIRED True)
+
+SET(CMAKE_C_FLAGS "-m64 -fPIC -Wall -Wno-pointer-sign")
+SET(CMAKE_CXX_FLAGS "-m64 -fPIC -Wall -Wno-write-strings")
+
+ADD_COMPILE_OPTIONS(-g -Wall)
+
+# Directory
+SET(INCDIR ${SRCDIR}/[header dir])
+SET(BINDIR ${ADMDIR}/[program dir])
+SET(LIBDIR ${ADMDIR}/[lib dir])
+
+INCLUDE_DIRECTORIES(./ ${INCDIR})
+LINK_DIRECTORIES(${LIBDIR})
+
+# Define
+ADD_DEFINITIONS(-D_LINUX -D_REENTRANT -D_POSIX_PTHREAD_SEMANTICS -DPOSIX_THR -D_THREAD_SAFE)
+
+# Link Library
+LINK_LIBRARIES(pthread)
+
+# TimeStamp
+string(TIMESTAMP timestamp "%Y%m%d.%H%M%S" UTC)
