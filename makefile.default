@@ -1,0 +1,22 @@
+# Makefile
+CC = gcc
+CFLAGS = -g -Wall
+LDFLAGS =  
+OBJECTS = [Program object name] ex)xxx.o
+TARGET = [Program Name]
+LIBPATH = [LIB Path]
+LIBS = [LIB Name]
+
+$(TARGET) : $(OBJECTS)
+	$(CC) $(CFLAGS) -I$(LIBPATH)/$(LIBS) -L$(LIBPATH) -l$(LIBS) -o $(TARGET) $(OBJECTS)
+
+	-I : LIB
+	-L : LIBPATH
+	-l : Header
+
+$(OBJECTS) : json.c
+	$(CC) -I$(LIBPATH)/$(LIBS) -c json.c
+
+clean:
+	rm -f *.o
+	rm -f $(TARGET)
